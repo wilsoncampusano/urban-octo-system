@@ -21,4 +21,8 @@ public class MovieList {
     public boolean contains(Movie movieToCheckFor) {
         return movies.contains(movieToCheckFor);
     }
+
+    public Collection getMovies() {
+        return movies;
+    }
 }

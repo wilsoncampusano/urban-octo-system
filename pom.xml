@@ -14,7 +14,16 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
         </dependency>
+
+        <!-- http://mvnrepository.com/artifact/easymock/easymock -->
+        <dependency>
+            <groupId>easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>1.0.1b</version>
+        </dependency>
+
     </dependencies>
 
 
