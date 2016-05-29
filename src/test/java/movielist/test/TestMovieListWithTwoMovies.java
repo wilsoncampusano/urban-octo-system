@@ -1,3 +1,5 @@
+package movielist.test;
+
 import movielist.Movie;
 import movielist.MovieList;
 import org.junit.Before;
@@ -6,8 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TestMovieList {
-
+public class TestMovieListWithTwoMovies {
     private Movie starWars;
     private Movie starTrek;
     private MovieList movieList;
@@ -17,40 +18,21 @@ public class TestMovieList {
         starWars = new Movie();
         starTrek = new Movie();
         movieList = new MovieList();
-    }
-
-    @Test
-    public void testEmptyListSize() throws Exception {
-
-        assertEquals("size of empty movie list should be 0.",0, movieList.size());
-
-    }
-
-    @Test
-    public void testSizeAfterAddigOne() throws Exception {
-
+        movieList.add(starTrek);
         movieList.add(starWars);
-        assertEquals("size of one item should be 1.", 1, movieList.size());
-
     }
 
     @Test
     public void testSizeAfterAddingTwo() throws Exception {
-        movieList.add(starTrek);
-        movieList.add(starWars);
-
         assertEquals("size of two item list should be 2.", 2, movieList.size());
     }
 
     @Test
     public void testContents() throws Exception {
-        movieList.add(starTrek);
-        movieList.add(starWars);
 
         assertTrue("list should contains startrek",movieList.contains(starTrek));
         assertTrue("list should contains starwars",movieList.contains(starWars));
 
     }
-
 
 }
