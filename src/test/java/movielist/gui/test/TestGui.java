@@ -26,9 +26,9 @@ public class TestGui {
 
     @Before
     public void setUp(){
-        starWars = new Movie();
-        starTrek = new Movie();
-        stargate = new Movie();
+        starWars = new Movie("star wars");
+        starTrek = new Movie("star trek");
+        stargate = new Movie("stargate");
 
         movies = new Vector();
         movies.add(starWars);

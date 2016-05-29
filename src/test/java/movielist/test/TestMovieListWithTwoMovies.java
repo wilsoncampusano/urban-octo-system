@@ -15,8 +15,8 @@ public class TestMovieListWithTwoMovies {
 
     @Before
     public void setUp() throws Exception {
-        starWars = new Movie();
-        starTrek = new Movie();
+        starWars = new Movie("star wars");
+        starTrek = new Movie("star trek");
         movieList = new MovieList();
         movieList.add(starTrek);
         movieList.add(starWars);

@@ -14,7 +14,7 @@ public class TestMovieListWithOneMovie {
 
     @Before
     public void setUp() throws Exception {
-        starWars = new Movie();
+        starWars = new Movie("star wars");
         movieList = new MovieList();
         movieList.add(starWars);
     }

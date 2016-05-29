@@ -41,7 +41,6 @@ public class TestSwingMovieListEditorView {
         movieList.add(starTrek);
         movieList.add(stargate);
 
-
     }
 
     @After
