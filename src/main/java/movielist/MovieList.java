@@ -9,15 +9,16 @@ import java.util.Collection;
 public class MovieList {
 
     private Collection movies = new ArrayList();
-    private int numberOfMovies = 0;
 
     public int size() {
-        return numberOfMovies;
+        return movies.size();
     }
 
-    public void add(Movie movie) {
-        movies.add(movie);
-        numberOfMovies++;
+    public void add(Movie movieToAdd) {
+        movies.add(movieToAdd);
     }
 
+    public boolean contains(Movie movieToCheckFor) {
+        return movies.contains(movieToCheckFor);
+    }
 }

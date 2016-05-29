@@ -42,5 +42,15 @@ public class TestMovieList {
         assertEquals("size of two item list should be 2.", 2, movieList.size());
     }
 
+    @Test
+    public void testContents() throws Exception {
+        movieList.add(starTrek);
+        movieList.add(starWars);
+
+        assertTrue("list should contains startrek",movieList.contains(starTrek));
+        assertTrue("list should contains starwars",movieList.contains(starWars));
+
+    }
+
 
 }
