@@ -12,9 +12,7 @@ import org.junit.Test;
 
 import java.util.Vector;
 
-/**
- * Created by wilsoncampusano on 5/28/16.
- */
+
 public class TestGui {
     private MockControl control;
     private MovieListEditorView mockView;

@@ -4,9 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 
-/**
- * Created by wilsoncampusano on 5/29/16.
- */
+
 public class SwingMovieListEditorView extends JFrame implements MovieListEditorView{
     private JList movieList = null;
 
