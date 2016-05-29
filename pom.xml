@@ -24,6 +24,14 @@
             <version>1.0.1b</version>
         </dependency>
 
+        <!-- http://mvnrepository.com/artifact/org.netbeans/jemmy -->
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>jemmy</artifactId>
+            <version>2.2.7.5</version>
+        </dependency>
+
+
     </dependencies>
 
 
