@@ -13,6 +13,7 @@ public class MovieListEditor {
         this.movies = movieList;
         this.view = aView;
         this.view.setMovies(new Vector(this.movies.getMovies()));
+        this.view.setEditor(this);
     }
 
     public void add() {

@@ -40,11 +40,13 @@ public class TestGui {
 
         control = EasyMock.controlFor(MovieListEditorView.class);
         mockView = (MovieListEditorView) control.getMock();
-        mockView.setMovies(movies);
+        mockView.setEditor(null);
+        control.setDefaultVoidCallable();
     }
 
     @Test
     public void testList(){
+        mockView.setMovies(movies);
         control.setVoidCallable(1);
         control.activate();
         MovieListEditor editor = new MovieListEditor(movieList, mockView);
@@ -57,7 +59,7 @@ public class TestGui {
         Movie lostInSpace = new Movie(LOST_IN_SPACE);
         Vector moviesWithAddition = new Vector(movies);
         moviesWithAddition.add(lostInSpace);
-
+        mockView.setMovies(movies);
         control.setVoidCallable(1);
         mockView.getNewName();
         control.setReturnValue(LOST_IN_SPACE, 1);

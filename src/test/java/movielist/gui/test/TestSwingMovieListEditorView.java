@@ -3,12 +3,15 @@ package movielist.gui.test;
 import movielist.Movie;
 import movielist.MovieList;
 import movielist.gui.MovieListEditor;
+import movielist.gui.MovieListEditorView;
 import movielist.gui.SwingMovieListEditorView;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JListOperator;
+import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import javax.swing.*;
 import java.util.Vector;
@@ -60,11 +63,32 @@ public class TestSwingMovieListEditorView {
         for (int i =0; i < movies.size(); i++){
             assertEquals("movie list contains bad movie", movies.get(i), listModel.getElementAt(i));
         }
+    }
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+    @Test
+    public void testAdding() {
+        String LOST_IN_SPACE = "Lost In Space";
+        Movie lostInSpace = new Movie(LOST_IN_SPACE);
+        movies.add(lostInSpace);
+
+        mainWindow = new JFrameOperator("movie list");
+        MovieListEditor editor  = new MovieListEditor(movieList, (MovieListEditorView) mainWindow.getWindow());
+
+        JTextFieldOperator newMovieField = new JTextFieldOperator(mainWindow);
+        newMovieField.enterText(LOST_IN_SPACE);
+
+        JButtonOperator addButton = new JButtonOperator(mainWindow, "Add");
+        addButton.doClick();
+
+        JListOperator movieList = new JListOperator(mainWindow);
+        ListModel model = movieList.getModel();
+
+        assertEquals("movie list is the wrong size", movies.size(), model.getSize());
+
+        for (int i = 0; i < movies.size(); i++) {
+            assertEquals("movie list containts bad movie at index "+i, movies.get(i), model.getElementAt(i));
         }
+
     }
 }
