@@ -37,16 +37,38 @@ public class TestGui {
         movieList.add(starWars);
         movieList.add(starTrek);
         movieList.add(stargate);
+
+        control = EasyMock.controlFor(MovieListEditorView.class);
+        mockView = (MovieListEditorView) control.getMock();
+        mockView.setMovies(movies);
     }
 
     @Test
     public void testList(){
-        control = EasyMock.controlFor(MovieListEditorView.class);
-        mockView = (MovieListEditorView) control.getMock();
-        mockView.setMovies(movies);
         control.setVoidCallable(1);
         control.activate();
         MovieListEditor editor = new MovieListEditor(movieList, mockView);
+        control.verify();
+    }
+
+    @Test
+    public void testAdding() {
+        String LOST_IN_SPACE = "Lost in space";
+        Movie lostInSpace = new Movie(LOST_IN_SPACE);
+        Vector moviesWithAddition = new Vector(movies);
+        moviesWithAddition.add(lostInSpace);
+
+        control.setVoidCallable(1);
+        mockView.getNewName();
+        control.setReturnValue(LOST_IN_SPACE, 1);
+
+        mockView.setMovies(moviesWithAddition);
+        control.setVoidCallable(1);
+
+        control.activate();
+
+        MovieListEditor editor = new MovieListEditor(movieList, mockView);
+        editor.add();
         control.verify();
     }
 }

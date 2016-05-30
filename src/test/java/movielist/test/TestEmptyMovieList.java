@@ -17,9 +17,7 @@ public class TestEmptyMovieList {
 
     @Test
     public void testEmptyListSize() throws Exception {
-
         assertEquals("size of empty movie list should be 0.",0, movieList.size());
-
     }
 
 }

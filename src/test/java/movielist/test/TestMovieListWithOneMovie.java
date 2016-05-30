@@ -22,7 +22,6 @@ public class TestMovieListWithOneMovie {
     @Test
     public void testSizeAfterAddigOne() throws Exception {
         assertEquals("size of one item should be 1.", 1, movieList.size());
-
     }
 
 }
