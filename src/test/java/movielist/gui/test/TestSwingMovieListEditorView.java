@@ -89,6 +89,13 @@ public class TestSwingMovieListEditorView {
         for (int i = 0; i < movies.size(); i++) {
             assertEquals("movie list containts bad movie at index "+i, movies.get(i), model.getElementAt(i));
         }
+    }
 
+    private void esperarInterfaz(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
