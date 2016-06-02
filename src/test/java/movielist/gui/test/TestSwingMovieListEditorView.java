@@ -60,7 +60,7 @@ public class TestSwingMovieListEditorView {
         ListModel listModel = movieList.getModel();
 
         assertEquals("movie list is the wrong size", movies.size(), listModel.getSize());
-        for (int i =0; i < movies.size(); i++){
+        for (int i = 0; i < movies.size(); i++){
             assertEquals("movie list contains bad movie", movies.get(i), listModel.getElementAt(i));
         }
     }

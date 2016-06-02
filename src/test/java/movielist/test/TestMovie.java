@@ -36,4 +36,32 @@ public class TestMovie {
         assertNotEquals(c,d);
 
     }
+
+
+    @Test
+    public void testRenaming() {
+        String newName = "Star Trek";
+        Movie aMovie = new Movie("Star Wars");
+
+        aMovie.rename(newName);
+
+        assertEquals("renaming should change the name", newName, aMovie.getName());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullName() {
+        new Movie(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyName() {
+        new Movie("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullRenaming() {
+        Movie aMovie = new Movie("Star Wars");
+        aMovie.rename(null);
+    }
 }

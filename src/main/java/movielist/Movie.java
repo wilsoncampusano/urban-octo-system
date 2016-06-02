@@ -1,9 +1,13 @@
 package movielist;
 
+import java.util.Objects;
+
 public class Movie {
     private String name;
 
     public Movie(String title) {
+        if(Objects.isNull(title) || title.trim().isEmpty()) throw new IllegalArgumentException("null movie name");
+
         this.name = title;
     }
 
@@ -30,5 +34,10 @@ public class Movie {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    public void rename(String newName) {
+        if(Objects.isNull(newName)) throw new IllegalArgumentException("null movie name");
+        this.name  =  newName;
     }
 }
