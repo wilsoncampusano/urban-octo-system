@@ -31,7 +31,7 @@ public class TestMovie {
         final Movie a = new Movie("star wars");
         final Movie b = new Movie("star wars");
         final Movie c = new Movie("star trek");
-        final Movie d = new Movie("star wars"){};
+        final Movie d = new Movie("star wars");
         assertEquals(a,b);
         assertNotEquals(c,d);
 

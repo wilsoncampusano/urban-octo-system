@@ -1,6 +1,8 @@
 package movielist.gui;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +10,7 @@ import java.util.Vector;
 
 
 public class SwingMovieListEditorView extends JFrame implements MovieListEditorView{
+    public static final String WINDOW_TITLE = "Movie list";
     private JList movieList = null;
     private MovieListEditor myEditor;
     private final JTextField movieField = new JTextField(16);
@@ -21,7 +24,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     }
 
     public void setNewName(String newName) {
-
+        movieField.setText(newName);
     }
 
     public void setMovies(Vector movies) {
@@ -57,6 +60,12 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
 
     private void initList() {
         movieList = new JList(new Vector());
+        movieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        movieList.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                myEditor.select(movieList.getSelectedIndex());
+            }
+        });
         JScrollPane scroller = new JScrollPane(movieList,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -68,7 +77,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     }
 
     private void setTitle() {
-        setTitle("Movie list");
+        setTitle(WINDOW_TITLE);
     }
 
 
