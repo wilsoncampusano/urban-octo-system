@@ -73,4 +73,24 @@ public class TestGui {
         editor.add();
         control.verify();
     }
+
+    @Test
+    public void testSelection() {
+        mockView.setMovies(movies);
+        control.setVoidCallable(1);
+
+        mockView.setNewName("star trek");
+        control.setVoidCallable(1);
+
+        mockView.setNewName("star wars");
+        control.setVoidCallable(1);
+
+        control.activate();
+
+        MovieListEditor editor = new MovieListEditor(movieList, mockView);
+        editor.select(1);
+        editor.select(0);
+
+        control.verify();
+    }
 }

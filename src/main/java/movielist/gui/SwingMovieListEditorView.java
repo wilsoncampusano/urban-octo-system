@@ -20,6 +20,10 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
         this.myEditor = anEditor;
     }
 
+    public void setNewName(String newName) {
+
+    }
+
     public void setMovies(Vector movies) {
         movieList.setListData(movies);
     }

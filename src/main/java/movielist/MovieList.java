@@ -22,4 +22,8 @@ public class MovieList {
     public Collection getMovies() {
         return movies;
     }
+
+    public Movie getMovies(int i) {
+        return new ArrayList<Movie>(movies).get(i);
+    }
 }

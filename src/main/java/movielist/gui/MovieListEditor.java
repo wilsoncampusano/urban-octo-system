@@ -21,4 +21,8 @@ public class MovieListEditor {
         movies.add(newMovie);
         view.setMovies(new Vector(movies.getMovies()));
     }
+
+    public void select(int i) {
+        view.setNewName(movies.getMovies(i).getName());
+    }
 }
