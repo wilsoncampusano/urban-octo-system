@@ -64,4 +64,10 @@ public class TestMovie {
         Movie aMovie = new Movie("Star Wars");
         aMovie.rename(null);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyRename() {
+        Movie movie = new Movie("Star Wars");
+        movie.rename("");
+    }
 }
