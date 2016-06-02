@@ -7,8 +7,7 @@ public class Movie {
 
     public Movie(String title) {
         checkNull(title);
-        if( title.trim().isEmpty()) throw new IllegalArgumentException("empty movie name");
-
+        checkEmpty(title);
         this.name = title;
     }
 
@@ -22,8 +21,12 @@ public class Movie {
 
     public void rename(String newName) {
         checkNull(newName);
-        if(newName.trim().isEmpty()) throw new IllegalArgumentException("empty movie name");
+        checkEmpty(newName);
         this.name  =  newName;
+    }
+
+    private void checkEmpty(String newName) {
+        if(newName.trim().isEmpty()) throw new IllegalArgumentException("empty movie name");
     }
 
     @Override
