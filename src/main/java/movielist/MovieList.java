@@ -5,25 +5,25 @@ import java.util.Collection;
 
 public class MovieList {
 
-    private Collection movies = new ArrayList();
+  private Collection movies = new ArrayList();
 
-    public int size() {
-        return movies.size();
-    }
+  public int size() {
+    return movies.size();
+  }
 
-    public void add(Movie movieToAdd) {
-        movies.add(movieToAdd);
-    }
+  public void add(Movie movieToAdd) {
+    movies.add(movieToAdd);
+  }
 
-    public boolean contains(Movie movieToCheckFor) {
-        return movies.contains(movieToCheckFor);
-    }
+  public boolean contains(Movie movieToCheckFor) {
+    return movies.contains(movieToCheckFor);
+  }
 
-    public Collection getMovies() {
-        return movies;
-    }
+  public Collection getMovies() {
+    return movies;
+  }
 
-    public Movie getMovies(int i) {
-        return new ArrayList<Movie>(movies).get(i);
-    }
+  public Movie getMovies(int i) {
+    return new ArrayList<Movie>(movies).get(i);
+  }
 }

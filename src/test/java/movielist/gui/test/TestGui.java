@@ -14,83 +14,112 @@ import java.util.Vector;
 
 
 public class TestGui {
-    private MockControl control;
-    private MovieListEditorView mockView;
-    private Vector movies;
-    private Movie starWars;
-    private Movie starTrek;
-    private Movie stargate;
-    private MovieList movieList;
+  private MockControl control;
+  private MovieListEditorView mockView;
+  private Vector movies;
+  private Movie starWars;
+  private Movie starTrek;
+  private Movie stargate;
+  private MovieList movieList;
 
-    @Before
-    public void setUp(){
-        starWars = new Movie("star wars");
-        starTrek = new Movie("star trek");
-        stargate = new Movie("stargate");
+  @Before
+  public void setUp() {
+    starWars = new Movie("star wars");
+    starTrek = new Movie("star trek");
+    stargate = new Movie("stargate");
 
-        movies = new Vector();
-        movies.add(starWars);
-        movies.add(starTrek);
-        movies.add(stargate);
+    movies = new Vector();
+    movies.add(starWars);
+    movies.add(starTrek);
+    movies.add(stargate);
 
-        movieList =  new MovieList();
-        movieList.add(starWars);
-        movieList.add(starTrek);
-        movieList.add(stargate);
+    movieList = new MovieList();
+    movieList.add(starWars);
+    movieList.add(starTrek);
+    movieList.add(stargate);
 
-        control = EasyMock.controlFor(MovieListEditorView.class);
-        mockView = (MovieListEditorView) control.getMock();
-        mockView.setEditor(null);
-        control.setDefaultVoidCallable();
-    }
+    control = EasyMock.controlFor(MovieListEditorView.class);
+    mockView = (MovieListEditorView) control.getMock();
+    mockView.setEditor(null);
+    control.setDefaultVoidCallable();
+  }
 
-    @Test
-    public void testList(){
-        mockView.setMovies(movies);
-        control.setVoidCallable(1);
-        control.activate();
-        MovieListEditor editor = new MovieListEditor(movieList, mockView);
-        control.verify();
-    }
+  @Test
+  public void testList() {
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+    control.activate();
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    control.verify();
+  }
 
-    @Test
-    public void testAdding() {
-        String LOST_IN_SPACE = "Lost in space";
-        Movie lostInSpace = new Movie(LOST_IN_SPACE);
-        Vector moviesWithAddition = new Vector(movies);
-        moviesWithAddition.add(lostInSpace);
-        mockView.setMovies(movies);
-        control.setVoidCallable(1);
-        mockView.getNewName();
-        control.setReturnValue(LOST_IN_SPACE, 1);
+  @Test
+  public void testAdding() {
+    String LOST_IN_SPACE = "Lost in space";
+    Movie lostInSpace = new Movie(LOST_IN_SPACE);
+    Vector moviesWithAddition = new Vector(movies);
+    moviesWithAddition.add(lostInSpace);
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+    mockView.getNewName();
+    control.setReturnValue(LOST_IN_SPACE, 1);
 
-        mockView.setMovies(moviesWithAddition);
-        control.setVoidCallable(1);
+    mockView.setMovies(moviesWithAddition);
+    control.setVoidCallable(1);
 
-        control.activate();
+    control.activate();
 
-        MovieListEditor editor = new MovieListEditor(movieList, mockView);
-        editor.add();
-        control.verify();
-    }
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.add();
+    control.verify();
+  }
 
-    @Test
-    public void testSelection() {
-        mockView.setMovies(movies);
-        control.setVoidCallable(1);
+  @Test
+  public void testSelection() {
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
 
-        mockView.setNewName("star trek");
-        control.setVoidCallable(1);
+    mockView.setNewName("star trek");
+    control.setVoidCallable(1);
 
-        mockView.setNewName("star wars");
-        control.setVoidCallable(1);
+    mockView.setNewName("star wars");
+    control.setVoidCallable(1);
 
-        control.activate();
+    control.activate();
 
-        MovieListEditor editor = new MovieListEditor(movieList, mockView);
-        editor.select(1);
-        editor.select(0);
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.select(1);
+    editor.select(0);
 
-        control.verify();
-    }
+    control.verify();
+  }
+
+  @Test
+  public void testUpdating() {
+    Vector newMovies = new Vector();
+    newMovies.add(starWars);
+    newMovies.add(new Movie("star trek I"));
+    newMovies.add(stargate);
+
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+
+    mockView.setNewName("star trek");
+    control.setVoidCallable(1);
+
+    mockView.getNewName();
+    control.setReturnValue("star trek I", 1);
+
+    mockView.setMovies(newMovies);
+    control.setVoidCallable(1);
+
+    control.activate();
+
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.select(1);
+    editor.update();
+
+    control.verify();
+
+  }
 }
