@@ -113,6 +113,7 @@ public class TestGui {
     mockView.setMovies(newMovies);
     control.setVoidCallable(1);
 
+
     control.activate();
 
     MovieListEditor editor = new MovieListEditor(movieList, mockView);

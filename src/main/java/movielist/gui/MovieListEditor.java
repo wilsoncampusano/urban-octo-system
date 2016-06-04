@@ -35,7 +35,7 @@ public class MovieListEditor {
   public void update() {
     if (selectedMovie != null) {
       selectedMovie.rename(view.getNewName());
-      view.setMovies(new Vector(movies.getMovies()));
+    //  view.setMovies(new Vector(movies.getMovies()));
     }
   }
 }
