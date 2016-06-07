@@ -106,6 +106,27 @@ public class TestSwingMovieListEditorView {
 
   }
 
+
+  @Test
+  public void testUpdating() {
+    mainWindow = new JFrameOperator(WINDOW_TITLE);
+    MovieListEditor editor = new MovieListEditor(movieList,(SwingMovieListEditorView) mainWindow.getWindow());
+
+    JListOperator movieList = new JListOperator(mainWindow);
+    movieList.clickOnItem(1,1);
+
+    JTextFieldOperator newMovieField = new JTextFieldOperator(mainWindow);
+    newMovieField.enterText("Star Trek I");
+
+    JButtonOperator updateButton = new JButtonOperator(mainWindow, "Update");
+    updateButton.doClick();
+
+    movieList.clickOnItem(0,1);
+    movieList.clickOnItem(1,1);
+    assertEquals("movie should have been renamed", "Star Trek I", newMovieField.getText());
+
+  }
+
   private void esperarInterfaz() {
     try {
       Thread.sleep(3000);

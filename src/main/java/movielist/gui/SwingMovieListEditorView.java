@@ -1,5 +1,7 @@
 package movielist.gui;
 
+import movielist.MovieList;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -41,7 +43,19 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     initList();
     initField();
     initAddButton();
+    initUpdateButton();
     pack();
+  }
+
+  private void initUpdateButton() {
+    JButton updateButton = new JButton("Update");
+    updateButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        myEditor.update();
+      }
+    });
+
+    getContentPane().add(updateButton);
   }
 
   private void initAddButton() {
@@ -81,9 +95,16 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   }
 
 
-  public static void start() {
+  public static SwingMovieListEditorView start() {
     SwingMovieListEditorView window = new SwingMovieListEditorView();
     window.init();
     window.show();
+    return window;
+  }
+
+  public static void main(String[] args) {
+    SwingMovieListEditorView window = SwingMovieListEditorView.start();
+    MovieList list = new MovieList();
+    MovieListEditor  editor = new MovieListEditor(list, window);
   }
 }

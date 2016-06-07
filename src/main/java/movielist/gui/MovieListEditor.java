@@ -13,13 +13,17 @@ public class MovieListEditor {
   public MovieListEditor(MovieList movieList, MovieListEditorView aView) {
     this.movies = movieList;
     this.view = aView;
-    this.view.setMovies(new Vector(this.movies.getMovies()));
+    updateMovieList();
     this.view.setEditor(this);
   }
 
   public void add() {
     Movie newMovie = new Movie(view.getNewName());
     movies.add(newMovie);
+    updateMovieList();
+  }
+
+  private void updateMovieList() {
     view.setMovies(new Vector(movies.getMovies()));
   }
 
