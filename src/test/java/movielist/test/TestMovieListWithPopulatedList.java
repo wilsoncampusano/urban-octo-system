@@ -70,4 +70,5 @@ public class TestMovieListWithPopulatedList {
       assertEquals("failed rename should't change the name", "Star Trek", starTrek.getName());
     }
   }
+
 }

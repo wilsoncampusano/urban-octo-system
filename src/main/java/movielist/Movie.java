@@ -11,6 +11,10 @@ public class Movie {
     this.name = title;
   }
 
+  public Movie(Movie orginal) {
+    name = orginal.name;
+  }
+
   private void checkNull(String title) {
     if (Objects.isNull(title)) throw new IllegalArgumentException("null movie name");
   }

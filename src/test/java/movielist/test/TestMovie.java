@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotSame;
 
 public class TestMovie {
 
@@ -50,7 +51,9 @@ public class TestMovie {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullName() {
-    new Movie(null);
+
+    String nullSring = null;
+    new Movie(nullSring);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -69,4 +72,12 @@ public class TestMovie {
     Movie movie = new Movie("Star Wars");
     movie.rename("");
   }
+
+  @Test
+  public void testCopyConstructor() {
+    Movie copyOfStarWars = new Movie(starWars);
+    assertNotSame("a copy should not be the same as the original", starWars, copyOfStarWars);
+    assertEquals("a copy should be equals to the original ", starWars, copyOfStarWars);
+  }
+
 }

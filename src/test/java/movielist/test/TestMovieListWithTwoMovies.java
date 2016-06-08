@@ -29,9 +29,7 @@ public class TestMovieListWithTwoMovies {
 
   @Test
   public void testContents() throws Exception {
-
     assertTrue("list should contains startrek", movieList.contains(starTrek));
     assertTrue("list should contains starwars", movieList.contains(starWars));
-
   }
 }
