@@ -116,8 +116,8 @@ public class TestGui {
     mockView.getNewName();
     control.setReturnValue("star trek I", 1);
 
-    mockView.setMovies(newMovies);
-    control.setVoidCallable(1);
+    /*mockView.setMovies(newMovies);
+    control.setVoidCallable(1);*/
 
 
     control.activate();
