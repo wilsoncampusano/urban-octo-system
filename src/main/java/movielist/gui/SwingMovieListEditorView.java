@@ -30,7 +30,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   }
 
   public void duplicateException(String string) {
-
+    JOptionPane.showMessageDialog(this, "that would result in a duplicate movie", "duplicate movie", JOptionPane.ERROR_MESSAGE);
   }
 
   public void setMovies(Vector movies) {
@@ -109,6 +109,6 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   public static void main(String[] args) {
     SwingMovieListEditorView window = SwingMovieListEditorView.start();
     MovieList list = new MovieList();
-    MovieListEditor  editor = new MovieListEditor(list, window);
+    MovieListEditor editor = new MovieListEditor(list, window);
   }
 }

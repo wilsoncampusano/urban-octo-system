@@ -9,10 +9,7 @@ import movielist.gui.SwingMovieListEditorView;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JFrameOperator;
-import org.netbeans.jemmy.operators.JListOperator;
-import org.netbeans.jemmy.operators.JTextFieldOperator;
+import org.netbeans.jemmy.operators.*;
 
 import javax.swing.*;
 import java.util.Vector;
@@ -133,9 +130,37 @@ public class TestSwingMovieListEditorView {
 
   }
 
+  @Test
+  public void testDuplicateCausingAdd() {
+    mainWindow = new JFrameOperator(WINDOW_TITLE);
+    MovieListEditor editor = new MovieListEditor(movieList, (SwingMovieListEditorView) mainWindow.getWindow());
+
+    JTextFieldOperator newMovieField = new JTextFieldOperator(mainWindow);
+    newMovieField.enterText(starWars.getName());
+
+    JButtonOperator addButton = new JButtonOperator(mainWindow, "Add");
+    addButton.pushNoBlock();
+
+    JDialogOperator messageDialog = new JDialogOperator("duplicate movie");
+    JLabelOperator message = new JLabelOperator(messageDialog);
+
+    assertEquals("wrong message text", "duplicate movie", messageDialog.getTitle());
+    JButtonOperator okButton = new JButtonOperator(messageDialog, "OK");
+    okButton.doClick();
+
+    JListOperator movieList = new JListOperator(mainWindow);
+    ListModel listModel = movieList.getModel();
+    assertEquals("movie list is the wrong size", movies.size(), listModel.getSize());
+
+    for(int i = 0; i < movies.size(); i++){
+      assertEquals("movie list contains bad movie at index "+i,movies.get(i), listModel.getElementAt(i));
+    }
+
+  }
+
   private void esperarInterfaz() {
     try {
-      Thread.sleep(3000);
+      Thread.sleep(9000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
