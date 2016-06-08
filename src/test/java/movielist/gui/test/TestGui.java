@@ -1,5 +1,6 @@
 package movielist.gui.test;
 
+import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
 import movielist.gui.MovieListEditor;
@@ -34,9 +35,14 @@ public class TestGui {
     movies.add(stargate);
 
     movieList = new MovieList();
-    movieList.add(starWars);
-    movieList.add(starTrek);
-    movieList.add(stargate);
+
+    try {
+      movieList.add(starWars);
+      movieList.add(starTrek);
+      movieList.add(stargate);
+    } catch (DuplicateMovieException e) {
+      e.printStackTrace();
+    }
 
     control = EasyMock.controlFor(MovieListEditorView.class);
     mockView = (MovieListEditorView) control.getMock();

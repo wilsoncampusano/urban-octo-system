@@ -1,5 +1,6 @@
 package movielist.gui;
 
+import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
 
@@ -19,7 +20,11 @@ public class MovieListEditor {
 
   public void add() {
     Movie newMovie = new Movie(view.getNewName());
-    movies.add(newMovie);
+    try {
+      movies.add(newMovie);
+    } catch (DuplicateMovieException e) {
+      e.printStackTrace();
+    }
     updateMovieList();
   }
 

@@ -11,7 +11,10 @@ public class MovieList {
     return movies.size();
   }
 
-  public void add(Movie movieToAdd) {
+  public void add(Movie movieToAdd) throws DuplicateMovieException{
+    if(this.contains(movieToAdd))
+      throw new DuplicateMovieException(movieToAdd.getName());
+
     movies.add(movieToAdd);
   }
 
