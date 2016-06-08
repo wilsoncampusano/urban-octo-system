@@ -44,10 +44,12 @@ public class MovieListEditor {
 
   public void update() {
     if (selectedMovie != null) {
+      String newName = view.getNewName();
       try{
-        movies.rename(selectedMovie, view.getNewName());
+        movies.rename(selectedMovie, newName);
         updateMovieList();
       }catch (DuplicateMovieException e){
+        view.duplicateException(newName);
       }
     }
   }
