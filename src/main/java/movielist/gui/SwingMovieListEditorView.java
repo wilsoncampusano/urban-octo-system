@@ -29,6 +29,10 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     movieField.setText(newName);
   }
 
+  public void duplicateException(String string) {
+
+  }
+
   public void setMovies(Vector movies) {
     movieList.setListData(movies);
   }

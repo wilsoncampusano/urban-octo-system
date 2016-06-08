@@ -18,14 +18,15 @@ public class MovieListEditor {
     this.view.setEditor(this);
   }
 
-  public void add() {
-    Movie newMovie = new Movie(view.getNewName());
+  public void add(){
+    String newName = view.getNewName();
+    Movie newMovie = new Movie(newName);
     try {
       movies.add(newMovie);
+      updateMovieList();
     } catch (DuplicateMovieException e) {
-      e.printStackTrace();
+      view.duplicateException(newName);
     }
-    updateMovieList();
   }
 
   private void updateMovieList() {

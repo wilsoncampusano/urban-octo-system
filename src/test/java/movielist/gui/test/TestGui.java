@@ -116,10 +116,6 @@ public class TestGui {
     mockView.getNewName();
     control.setReturnValue("star trek I", 1);
 
-    /*mockView.setMovies(newMovies);
-    control.setVoidCallable(1);*/
-
-
     control.activate();
 
     MovieListEditor editor = new MovieListEditor(movieList, mockView);
@@ -128,5 +124,24 @@ public class TestGui {
 
     control.verify();
 
+  }
+
+  @Test
+  public void testDuplicateCausingAdd() {
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+
+    mockView.getNewName();
+    control.setReturnValue("star wars", 1);
+
+    mockView.duplicateException("star wars");
+    control.setVoidCallable(1);
+
+    control.activate();
+
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.add();
+
+    control.verify();
   }
 }
