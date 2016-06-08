@@ -29,4 +29,12 @@ public class MovieList {
   public Movie getMovies(int i) {
     return new ArrayList<Movie>(movies).get(i);
   }
+
+  public void rename(Movie aMovie, String newName) throws DuplicateMovieException{
+    Movie potentialMovie = new Movie(newName);
+    if(this.contains(potentialMovie))
+      throw new DuplicateMovieException(potentialMovie.getName());
+
+    aMovie.rename(newName);
+  }
 }

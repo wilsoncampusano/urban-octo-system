@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class TestMovieListWithPopulatedList {
   private MovieList movieList;
@@ -44,5 +45,29 @@ public class TestMovieListWithPopulatedList {
       assertEquals("shouldn't change the list size", 2, movieList.size());
     }
 
+  }
+
+  @Test
+  public void testRenaming() {
+    final String newName =  "Star Trek I";
+    try {
+      movieList.rename(starTrek, newName);
+    } catch (DuplicateMovieException e) {
+
+    }
+
+    assertEquals("name should be different", newName, starTrek.getName());
+  }
+
+  @Test
+  public void testRenamingDuplicate() {
+    try{
+      movieList.rename(starTrek, "Star Wars");
+      fail("renaming to a duplicate throw DuplicateMovieException");
+    }catch (DuplicateMovieException e){
+      assertEquals("renaming should'nt change the lis size", 3, movieList.size());
+
+      assertEquals("failed rename should't change the name", "Star Trek", starTrek.getName());
+    }
   }
 }
