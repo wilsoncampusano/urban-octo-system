@@ -116,6 +116,9 @@ public class TestGui {
     mockView.getNewName();
     control.setReturnValue("star trek I", 1);
 
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+
     control.activate();
 
     MovieListEditor editor = new MovieListEditor(movieList, mockView);
