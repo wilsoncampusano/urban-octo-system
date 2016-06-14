@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.netbeans.jemmy.operators.*;
 
 import javax.swing.*;
+import java.util.List;
 import java.util.Vector;
 
 import static org.junit.Assert.assertEquals;
@@ -48,6 +49,12 @@ public class TestSwingMovieListEditorView {
       e.printStackTrace();
     }
 
+    setUpWindow();
+  }
+
+  private void setUpWindow() {
+    mainWindow = new JFrameOperator(WINDOW_TITLE);
+    MovieListEditor editor = new MovieListEditor(movieList, (SwingMovieListEditorView) mainWindow.getWindow());
   }
 
   @After
@@ -58,8 +65,6 @@ public class TestSwingMovieListEditorView {
 
   @Test
   public void testListContents() {
-    mainWindow = new JFrameOperator(WINDOW_TITLE);
-    MovieListEditor editor = new MovieListEditor(movieList, (SwingMovieListEditorView) mainWindow.getWindow());
     JListOperator movieList = new JListOperator(mainWindow);
     ListModel listModel = movieList.getModel();
 
@@ -75,9 +80,6 @@ public class TestSwingMovieListEditorView {
     String LOST_IN_SPACE = "Lost In Space";
     Movie lostInSpace = new Movie(LOST_IN_SPACE);
     movies.add(lostInSpace);
-
-    mainWindow = new JFrameOperator(WINDOW_TITLE);
-    MovieListEditor editor = new MovieListEditor(movieList, (MovieListEditorView) mainWindow.getWindow());
 
     JTextFieldOperator newMovieField = new JTextFieldOperator(mainWindow);
     newMovieField.enterText(LOST_IN_SPACE);
@@ -97,8 +99,6 @@ public class TestSwingMovieListEditorView {
 
   @Test
   public void testSelecting() {
-    mainWindow = new JFrameOperator(WINDOW_TITLE);
-    MovieListEditor editor = new MovieListEditor(movieList, (SwingMovieListEditorView) mainWindow.getWindow());
 
     JListOperator movieList = new JListOperator(mainWindow);
     movieList.clickOnItem(1, 1);
@@ -112,8 +112,6 @@ public class TestSwingMovieListEditorView {
 
   @Test
   public void testUpdating() {
-    mainWindow = new JFrameOperator(WINDOW_TITLE);
-    MovieListEditor editor = new MovieListEditor(movieList,(SwingMovieListEditorView) mainWindow.getWindow());
 
     JListOperator movieList = new JListOperator(mainWindow);
     movieList.clickOnItem(1,1);
@@ -132,8 +130,6 @@ public class TestSwingMovieListEditorView {
 
   @Test
   public void testDuplicateCausingAdd() {
-    mainWindow = new JFrameOperator(WINDOW_TITLE);
-    MovieListEditor editor = new MovieListEditor(movieList, (SwingMovieListEditorView) mainWindow.getWindow());
 
     JTextFieldOperator newMovieField = new JTextFieldOperator(mainWindow);
     newMovieField.enterText(starWars.getName());
@@ -156,6 +152,39 @@ public class TestSwingMovieListEditorView {
       assertEquals("movie list contains bad movie at index "+i,movies.get(i), listModel.getElementAt(i));
     }
 
+  }
+
+  @Test
+  public void testDuplicateCausingUpdate() {
+
+    JListOperator movieList = new JListOperator(mainWindow);
+    movieList.clickOnItem(1,1);
+
+    JTextFieldOperator newMovieField = new JTextFieldOperator(mainWindow);
+    newMovieField.enterText(starWars.getName());
+
+    JButtonOperator updateButton = new JButtonOperator(mainWindow, "Update");
+    updateButton.pushNoBlock();
+
+    checkDuplicateExceptionDialog();
+
+    ListModel listModel = movieList.getModel();
+
+    assertEquals("movie list is the wrong size", movies.size(), listModel.getSize());
+
+    for(int i  = 0; i< movies.size(); i++){
+      assertEquals("movie list contains bad movie", movies.get(i), listModel.getElementAt(i));
+    }
+  }
+
+  private void checkDuplicateExceptionDialog() {
+    JDialogOperator messageDialog = new JDialogOperator("duplicate movie");
+    JLabelOperator message = new JLabelOperator(messageDialog);
+
+    assertEquals("wrong message text", "duplicate movie", messageDialog.getTitle());
+
+    JButtonOperator okButton = new JButtonOperator(messageDialog, "OK");
+    okButton.doClick();
   }
 
   private void esperarInterfaz() {
