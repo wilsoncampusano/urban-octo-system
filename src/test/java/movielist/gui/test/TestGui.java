@@ -37,9 +37,7 @@ public class TestGui {
     movieList = new MovieList();
 
     try {
-      movieList.add(starWars);
-      movieList.add(starTrek);
-      movieList.add(stargate);
+      allAllMovies();
     } catch (DuplicateMovieException e) {
       e.printStackTrace();
     }
@@ -48,6 +46,12 @@ public class TestGui {
     mockView = (MovieListEditorView) control.getMock();
     mockView.setEditor(null);
     control.setDefaultVoidCallable();
+  }
+
+  private void allAllMovies() throws DuplicateMovieException {
+    movieList.add(starWars);
+    movieList.add(starTrek);
+    movieList.add(stargate);
   }
 
   @Test

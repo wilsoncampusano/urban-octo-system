@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class TestMovieListWithOneMovie {
 
@@ -22,6 +23,11 @@ public class TestMovieListWithOneMovie {
   @Test
   public void testSizeAfterAddigOne() throws Exception {
     assertEquals("size of one item should be 1.", 1, movieList.size());
+  }
+
+  @Test
+  public void testUnrated() {
+    assertFalse("star wars should be unrated", starWars.hasRating());
   }
 
 }

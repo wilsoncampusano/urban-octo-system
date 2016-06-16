@@ -4,15 +4,21 @@ import java.util.Objects;
 
 public class Movie {
   private String name;
+  private int rating;
 
   public Movie(String title) {
-    checkNull(title);
-    checkEmpty(title);
-    this.name = title;
+    this(title, -1);
   }
 
   public Movie(Movie orginal) {
     name = orginal.name;
+  }
+
+  public Movie(String title, int rating) {
+    checkNull(title);
+    checkEmpty(title);
+    name = title;
+    this.rating = rating;
   }
 
   private void checkNull(String title) {
@@ -52,5 +58,13 @@ public class Movie {
   @Override
   public int hashCode() {
     return name != null ? name.hashCode() : 0;
+  }
+
+  public boolean hasRating() {
+    return rating > -1;
+  }
+
+  public int getRating() {
+    return rating;
   }
 }

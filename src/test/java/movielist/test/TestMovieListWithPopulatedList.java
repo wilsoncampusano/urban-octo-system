@@ -6,27 +6,28 @@ import movielist.MovieList;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class TestMovieListWithPopulatedList {
   private MovieList movieList;
   private Movie starWars;
   private Movie starTrek;
   private Movie stargate;
+  private Movie fotr;
 
   @Before
   public void setUp() {
     starWars = new Movie("Star Wars");
     starTrek = new Movie("Star Trek");
     stargate = new Movie("Stargate");
-
+    fotr = new Movie("fotr");
     movieList = new MovieList();
 
     try {
       movieList.add(starWars);
       movieList.add(starTrek);
       movieList.add(stargate);
+      movieList.add(fotr);
     } catch (DuplicateMovieException e) {
       e.printStackTrace();
     }
@@ -69,6 +70,20 @@ public class TestMovieListWithPopulatedList {
 
       assertEquals("failed rename should't change the name", "Star Trek", starTrek.getName());
     }
+  }
+
+
+  @Test
+  public void testUnrated() {
+    assertFalse("star wars should be unrated", starWars.hasRating());
+  }
+
+
+  @Test
+  public void testRatedMovie() {
+    Movie fotr = new Movie("fellowship of the ring", 5);
+    assertTrue("fotr should be rated", fotr.hasRating());
+    assertEquals("fotr should be rated at 5.", 5, fotr.getRating());
   }
 
 }
