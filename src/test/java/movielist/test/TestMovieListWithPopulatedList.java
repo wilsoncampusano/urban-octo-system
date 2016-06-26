@@ -3,6 +3,7 @@ package movielist.test;
 import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
+import movielist.UnratedException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,10 +81,21 @@ public class TestMovieListWithPopulatedList {
 
 
   @Test
-  public void testRatedMovie() {
+  public void testRatedMovie() throws UnratedException {
     Movie fotr = new Movie("fellowship of the ring", 5);
     assertTrue("fotr should be rated", fotr.hasRating());
     assertEquals("fotr should be rated at 5.", 5, fotr.getRating());
+  }
+
+
+  @Test
+  public void testUnratedException() throws UnratedException{
+    try{
+      starWars.getRating();
+      fail("getRating() of an unrated movie should throw unratedexception.");
+    }catch(UnratedException ex ){
+      assertEquals("UnratedException should identify the movie", starWars.getName(), ex.getMessage());
+    }
   }
 
 }

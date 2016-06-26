@@ -64,7 +64,9 @@ public class Movie {
     return rating > -1;
   }
 
-  public int getRating() {
-    return rating;
+  public int getRating() throws UnratedException {
+    if(hasRating())
+      return rating;
+    throw new UnratedException(this.name);
   }
 }
