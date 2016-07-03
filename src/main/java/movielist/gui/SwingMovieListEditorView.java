@@ -79,6 +79,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   private void initList() {
     movieList = new JList(new Vector());
     movieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    movieList.setCellRenderer(new CustomMovieListRenderer());
     movieList.addListSelectionListener(new ListSelectionListener() {
       public void valueChanged(ListSelectionEvent e) {
         myEditor.select(movieList.getSelectedIndex());
