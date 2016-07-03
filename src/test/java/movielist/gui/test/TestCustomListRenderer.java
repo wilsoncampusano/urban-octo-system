@@ -1,6 +1,7 @@
 package movielist.gui.test;
 
 import movielist.Movie;
+import movielist.gui.CustomMovieListRenderer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +24,11 @@ public class TestCustomListRenderer {
     starTrek = new Movie("Start Trek", 3);
     renderer = new CustomMovieListRenderer();
     list = new JList();
+
+    list.setBackground(blue);
+    list.setForeground(Color.red);
+    list.setSelectionBackground(Color.red);
+    list.setSelectionForeground(blue);
   }
 
   @Test
@@ -48,10 +54,6 @@ public class TestCustomListRenderer {
 
   @Test
   public void testUnselectedColors() {
-    list.setBackground(blue);
-    list.setForeground(Color.red);
-    list.setSelectionBackground(Color.red);
-    list.setSelectionForeground(blue);
 
     renderer.getListCellRendererComponent(list, fotr, 1, false, false);
 
@@ -61,10 +63,6 @@ public class TestCustomListRenderer {
 
   @Test
   public void testSelectedColors() {
-    list.setBackground(blue);
-    list.setForeground(Color.red);
-    list.setSelectionBackground(Color.red);
-    list.setSelectionForeground(Color.blue);
 
     renderer.getListCellRendererComponent(list, fotr, 1, true, false);
 
@@ -72,4 +70,6 @@ public class TestCustomListRenderer {
     assertEquals("selected foreground should be redblue",Color.blue, renderer.getForeground());
 
   }
+
+
 }

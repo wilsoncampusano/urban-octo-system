@@ -1,11 +1,11 @@
-package movielist.gui.test;
+package movielist.gui;
 
 import movielist.Movie;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class CustomMovieListRenderer extends Component {
+public class CustomMovieListRenderer extends Component implements ListCellRenderer {
   private Object icon;
   private String text;
   private static ImageIcon[] ratingIcons = {
