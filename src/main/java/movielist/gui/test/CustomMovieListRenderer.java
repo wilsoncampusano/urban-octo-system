@@ -20,6 +20,13 @@ public class CustomMovieListRenderer extends Component {
 
   public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
     Movie movieToRender = (Movie) value;
+    if(isSelected){
+      setBackground(list.getSelectionBackground());
+      setForeground(list.getSelectionForeground());
+    }else {
+      setBackground(list.getBackground());
+      setForeground(list.getForeground());
+    }
     setText(movieToRender.getName());
     if (movieToRender.hasRating()) {
       try {

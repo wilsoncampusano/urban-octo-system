@@ -7,6 +7,7 @@ import org.junit.Test;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.awt.Color.blue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -41,6 +42,34 @@ public class TestCustomListRenderer {
     renderer.getListCellRendererComponent(list, starTrek, 1, true, false);
     assertEquals("text should be"+starTrek.getName(), starTrek.getName(), renderer.getText());
     assertSame("icon should be 3 stars", CustomMovieListRenderer.iconForRating(3), renderer.getIcon());
+
+  }
+
+
+  @Test
+  public void testUnselectedColors() {
+    list.setBackground(blue);
+    list.setForeground(Color.red);
+    list.setSelectionBackground(Color.red);
+    list.setSelectionForeground(blue);
+
+    renderer.getListCellRendererComponent(list, fotr, 1, false, false);
+
+    assertEquals("unselected background should be blue", blue, renderer.getBackground());
+    assertEquals("unselected foreground should be red", Color.red, renderer.getForeground());
+  }
+
+  @Test
+  public void testSelectedColors() {
+    list.setBackground(blue);
+    list.setForeground(Color.red);
+    list.setSelectionBackground(Color.red);
+    list.setSelectionForeground(Color.blue);
+
+    renderer.getListCellRendererComponent(list, fotr, 1, true, false);
+
+    assertEquals("selected background should be bluered", Color.red, renderer.getBackground());
+    assertEquals("selected foreground should be redblue",Color.blue, renderer.getForeground());
 
   }
 }
