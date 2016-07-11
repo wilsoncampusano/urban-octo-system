@@ -3,6 +3,7 @@ package movielist.gui;
 import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
+import movielist.UnratedException;
 
 import java.util.Vector;
 
@@ -19,7 +20,7 @@ public class MovieListEditor {
   }
 
   public void add(){
-    String newName = view.getNewName();
+    String newName = view.getNameField();
     Movie newMovie = new Movie(newName);
     try {
       movies.add(newMovie);
@@ -38,13 +39,18 @@ public class MovieListEditor {
       selectedMovie = null;
     }else {
       selectedMovie = movies.getMovies(i);
-      view.setNewName(selectedMovie.getName());
+      view.setNameField(selectedMovie.getName());
+      try {
+        view.setRatingField(selectedMovie.getRating()+1);
+      } catch (UnratedException e) {
+        view.setRatingField(0);
+      }
     }
   }
 
   public void update() {
     if (selectedMovie != null) {
-      String newName = view.getNewName();
+      String newName = view.getNameField();
       try{
         movies.rename(selectedMovie, newName);
         updateMovieList();

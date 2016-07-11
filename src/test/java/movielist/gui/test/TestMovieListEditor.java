@@ -14,7 +14,7 @@ import org.junit.Test;
 import java.util.Vector;
 
 
-public class TestGui {
+public class TestMovieListEditor {
   private MockControl control;
   private MovieListEditorView mockView;
   private Vector movies;
@@ -25,8 +25,8 @@ public class TestGui {
 
   @Before
   public void setUp() {
-    starWars = new Movie("star wars");
-    starTrek = new Movie("star trek");
+    starWars = new Movie("star wars",5);
+    starTrek = new Movie("star trek",3);
     stargate = new Movie("stargate");
 
     movies = new Vector();
@@ -71,7 +71,7 @@ public class TestGui {
     moviesWithAddition.add(lostInSpace);
     mockView.setMovies(movies);
     control.setVoidCallable(1);
-    mockView.getNewName();
+    mockView.getNameField();
     control.setReturnValue(LOST_IN_SPACE, 1);
 
     mockView.setMovies(moviesWithAddition);
@@ -89,10 +89,19 @@ public class TestGui {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.setNewName("star trek");
+    mockView.setNameField("star trek");
+    control.setVoidCallable(1);
+    mockView.setRatingField(6);
     control.setVoidCallable(1);
 
-    mockView.setNewName("star wars");
+    mockView.setNameField("star wars");
+    control.setVoidCallable(1);
+    mockView.setRatingField(4);
+    control.setVoidCallable(1);
+
+    mockView.setNameField("stargate");
+    control.setVoidCallable(1);
+    mockView.setRatingField(0);
     control.setVoidCallable(1);
 
     control.activate();
@@ -100,6 +109,7 @@ public class TestGui {
     MovieListEditor editor = new MovieListEditor(movieList, mockView);
     editor.select(1);
     editor.select(0);
+    editor.select(2);
 
     control.verify();
   }
@@ -114,10 +124,10 @@ public class TestGui {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.setNewName("star trek");
+    mockView.setNameField("star trek");
     control.setVoidCallable(1);
 
-    mockView.getNewName();
+    mockView.getNameField();
     control.setReturnValue("star trek I", 1);
 
     mockView.setMovies(movies);
@@ -138,7 +148,7 @@ public class TestGui {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.getNewName();
+    mockView.getNameField();
     control.setReturnValue("star wars", 1);
 
     mockView.duplicateException("star wars");
@@ -157,10 +167,10 @@ public class TestGui {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.setNewName("star trek");
+    mockView.setNameField("star trek");
     control.setVoidCallable(1);
 
-    mockView.getNewName();
+    mockView.getNameField();
     control.setReturnValue("star wars", 1);
 
     mockView.duplicateException("star wars");

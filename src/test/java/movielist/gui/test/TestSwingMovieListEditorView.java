@@ -30,8 +30,8 @@ public class TestSwingMovieListEditorView {
   @Before
   public void setUp() {
     SwingMovieListEditorView.start();
-    starWars = new Movie("star wars");
-    starTrek = new Movie("star trek");
+    starWars = new Movie("star wars",5);
+    starTrek = new Movie("star trek",3);
     stargate = new Movie("stargate");
 
     movies = new Vector();

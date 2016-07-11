@@ -25,7 +25,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     this.myEditor = anEditor;
   }
 
-  public void setNewName(String newName) {
+  public void setNameField(String newName) {
     movieField.setText(newName);
   }
 
@@ -33,11 +33,15 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     JOptionPane.showMessageDialog(this, "that would result in a duplicate movie", "duplicate movie", JOptionPane.ERROR_MESSAGE);
   }
 
+  public void setRatingField(int newRating) {
+
+  }
+
   public void setMovies(Vector movies) {
     movieList.setListData(movies);
   }
 
-  public String getNewName() {
+  public String getNameField() {
     return movieField.getText();
   }
 
