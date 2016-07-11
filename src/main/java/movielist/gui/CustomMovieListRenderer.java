@@ -6,7 +6,7 @@ import movielist.UnratedException;
 import javax.swing.*;
 import java.awt.*;
 
-public class CustomMovieListRenderer extends Component implements ListCellRenderer {
+public class CustomMovieListRenderer extends JLabel implements ListCellRenderer {
   private ImageIcon icon;
   private String text;
   private static ImageIcon[] ratingIcons = {
