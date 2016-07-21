@@ -69,4 +69,8 @@ public class Movie {
       return rating;
     throw new UnratedException(this.name);
   }
+
+  public void setRating(int rating) {
+    this.rating = rating;
+  }
 }

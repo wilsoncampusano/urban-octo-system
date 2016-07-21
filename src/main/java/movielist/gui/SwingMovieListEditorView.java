@@ -37,6 +37,10 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
 
   }
 
+  public int getRatingField() {
+    return 0;
+  }
+
   public void setMovies(Vector movies) {
     movieList.setListData(movies);
   }

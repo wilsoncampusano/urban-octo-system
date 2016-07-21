@@ -53,6 +53,7 @@ public class MovieListEditor {
       String newName = view.getNameField();
       try{
         movies.rename(selectedMovie, newName);
+        selectedMovie.setRating(view.getRatingField());
         updateMovieList();
       }catch (DuplicateMovieException e){
         view.duplicateException(newName);

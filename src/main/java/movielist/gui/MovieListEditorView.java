@@ -15,4 +15,6 @@ public interface MovieListEditorView {
   void duplicateException(String string);
 
   void setRatingField(int newRating);
+
+  int getRatingField();
 }
