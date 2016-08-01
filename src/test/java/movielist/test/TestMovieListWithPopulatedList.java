@@ -67,7 +67,7 @@ public class TestMovieListWithPopulatedList {
       movieList.rename(starTrek, "Star Wars");
       fail("renaming to a duplicate throw DuplicateMovieException");
     }catch (DuplicateMovieException e){
-      assertEquals("renaming should'nt change the lis size", 3, movieList.size());
+      assertEquals("renaming should'nt change the list size", 4, movieList.size());
 
       assertEquals("failed rename should't change the name", "Star Trek", starTrek.getName());
     }
