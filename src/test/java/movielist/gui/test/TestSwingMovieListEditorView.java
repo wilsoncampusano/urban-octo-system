@@ -177,6 +177,21 @@ public class TestSwingMovieListEditorView {
     }
   }
 
+  @Test
+  public void testSelectUpdatesRating() {
+    JListOperator movieList = new JListOperator(mainWindow);
+    JComboBoxOperator ratingCombo = new JComboBoxOperator(mainWindow);
+
+    movieList.clickOnItem(0,1);
+    assertEquals("wrong rating from selecting starwars", 6, ratingCombo.getSelectedIndex());
+
+    movieList.clickOnItem(1,1);
+    assertEquals("wrong rating from selecting startrek", 4, ratingCombo.getSelectedIndex());
+
+    movieList.clickOnItem(2,1);
+    assertEquals("wrong raing from selecting stargate", 0, ratingCombo.getSelectedIndex());
+  }
+
   private void checkDuplicateExceptionDialog() {
     JDialogOperator messageDialog = new JDialogOperator("duplicate movie");
     JLabelOperator message = new JLabelOperator(messageDialog);

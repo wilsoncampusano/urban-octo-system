@@ -5,11 +5,12 @@ import movielist.UnratedException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
 public class CustomMovieListRenderer extends JLabel implements ListCellRenderer {
   private ImageIcon icon;
   private String text;
-  private static ImageIcon[] ratingIcons = {
+  public static ImageIcon[] ratingIcons = {
       new ImageIcon("src/images/no-rating.gif"),
       new ImageIcon("src/images/zero-stars.gif"),
       new ImageIcon("src/images/one-star.gif"),
@@ -58,5 +59,9 @@ public class CustomMovieListRenderer extends JLabel implements ListCellRenderer 
 
   public void setIcon(ImageIcon icon) {
     this.icon = icon;
+  }
+
+  public static Vector icons() {
+    return null;
   }
 }

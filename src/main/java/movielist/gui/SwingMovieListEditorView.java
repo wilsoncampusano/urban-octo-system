@@ -16,6 +16,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   private JList movieList = null;
   private MovieListEditor myEditor;
   private final JTextField movieField = new JTextField(16);
+  private JComboBox ratingField = null;
 
   public SwingMovieListEditorView() throws HeadlessException {
     super();
@@ -33,12 +34,12 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     JOptionPane.showMessageDialog(this, "that would result in a duplicate movie", "duplicate movie", JOptionPane.ERROR_MESSAGE);
   }
 
-  public void setRatingField(int newRating) {
-
+  public void setRatingField(int selectedIndex) {
+    ratingField.setSelectedIndex(selectedIndex);
   }
 
   public int getRatingField() {
-    return 0;
+    return ratingField.getSelectedIndex();
   }
 
   public void setMovies(Vector movies) {
@@ -54,9 +55,15 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     setLayout();
     initList();
     initField();
+    initRatingCombo();
     initAddButton();
     initUpdateButton();
     pack();
+  }
+
+  private void initRatingCombo() {
+    ratingField = new JComboBox(CustomMovieListRenderer.ratingIcons);
+    getContentPane().add(ratingField);
   }
 
   private void initUpdateButton() {
