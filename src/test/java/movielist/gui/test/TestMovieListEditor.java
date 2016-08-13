@@ -26,7 +26,7 @@ public class TestMovieListEditor {
   @Before
   public void setUp() {
     starWars = new Movie("star wars",5);
-    starTrek = new Movie("star trek",3);
+    starTrek = new Movie("Star Trek",3);
     stargate = new Movie("stargate");
 
     movies = new Vector();
@@ -89,7 +89,7 @@ public class TestMovieListEditor {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.setNameField("star trek");
+    mockView.setNameField("Star Trek");
     control.setVoidCallable(1);
     mockView.setRatingField(6);
     control.setVoidCallable(1);
@@ -121,7 +121,7 @@ public class TestMovieListEditor {
     newMovies.add(new Movie("Star Trek I", 5));
     newMovies.add(stargate);
 
-    mockView.setNameField("star trek");
+    mockView.setNameField("Star Trek");
     control.setVoidCallable();
     mockView.setRatingField(4);
     control.setVoidCallable(1);
@@ -168,7 +168,7 @@ public class TestMovieListEditor {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.setNameField("star trek");
+    mockView.setNameField("Star Trek");
     control.setVoidCallable(1);
 
     mockView.getNameField();
@@ -188,5 +188,38 @@ public class TestMovieListEditor {
 
     control.verify();
 
+  }
+
+  @Test
+  public void testUpdatingWithSameName() {
+    Vector newMovies = new Vector();
+    newMovies.add(starWars);
+    newMovies.add(new Movie("Star Trek", 5));
+    newMovies.add(stargate);
+
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+
+    mockView.setNameField("Star Trek");
+    control.setVoidCallable(1);
+    mockView.setRatingField(4);
+    control.setVoidCallable();
+
+    mockView.getNameField();
+    control.setReturnValue("Star Trek", 1);
+    mockView.getRatingField();
+    control.setReturnValue(6, 1);
+
+    mockView.setMovies(newMovies);
+    control.setVoidCallable(1);
+
+    control.activate();
+
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+
+    editor.select(1);
+    editor.update();
+
+    control.verify();
   }
 }
