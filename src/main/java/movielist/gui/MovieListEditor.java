@@ -21,6 +21,9 @@ public class MovieListEditor {
 
   public void add(){
     String newName = view.getNameField();
+    //TODO: fix add with a rating. test-drive this.
+    //int rating = view.getRatingField();
+    //Movie newMovie = new Movie(newName, rating -1);
     Movie newMovie = new Movie(newName);
     try {
       movies.add(newMovie);
