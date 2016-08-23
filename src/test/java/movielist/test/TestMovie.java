@@ -80,4 +80,16 @@ public class TestMovie {
     assertEquals("a copy should be equals to the original ", starWars, copyOfStarWars);
   }
 
+
+  @Test
+  public void testUncategorized() {
+    assertEquals("starWars shoul dbe uncategorized. ", "Uncategorized", starWars.getCategory());
+  }
+
+  @Test
+  public void testScienceFiction() {
+    Movie alien = new Movie("Alien", "Science Fiction", 1);
+    assertEquals("alien should be science fiction", "Science Fiction", alien.getCategory());
+  }
+
 }

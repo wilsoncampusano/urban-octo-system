@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Movie {
   private String name;
   private int rating;
+  private String category ="Uncategorized";
 
   public Movie(String title) {
     this(title, -1);
@@ -19,6 +20,11 @@ public class Movie {
     checkEmpty(title);
     name = title;
     this.rating = rating;
+  }
+
+  public Movie(String aName, String aCategory, int aRating){
+    this(aName, aRating);
+    this.category = (aCategory != null)? aCategory : "Uncategorized";
   }
 
   private void checkNull(String title) {
@@ -72,5 +78,13 @@ public class Movie {
 
   public void setRating(int rating) {
     this.rating = rating;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
   }
 }
