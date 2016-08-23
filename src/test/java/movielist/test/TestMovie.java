@@ -14,7 +14,7 @@ public class TestMovie {
 
   @Before
   public void setUp() {
-    this.starWars = new Movie("star Wars");
+    this.starWars = new Movie("star Wars", "Uncategorized", -1);
   }
 
   @Test
@@ -29,10 +29,10 @@ public class TestMovie {
 
   @Test
   public void testEquals() {
-    final Movie a = new Movie("star wars");
-    final Movie b = new Movie("star wars");
-    final Movie c = new Movie("star trek");
-    final Movie d = new Movie("star wars");
+    final Movie a = new Movie("star wars", "Uncategorized", -1);
+    final Movie b = new Movie("star wars", "Uncategorized", -1);
+    final Movie c = new Movie("star trek", "Uncategorized", -1);
+    final Movie d = new Movie("star wars", "Uncategorized", -1);
     assertEquals(a, b);
     assertNotEquals(c, d);
 
@@ -41,11 +41,9 @@ public class TestMovie {
   @Test
   public void testRenaming() {
     String newName = "Star Trek";
-    Movie aMovie = new Movie("Star Wars");
+    starWars.rename(newName);
 
-    aMovie.rename(newName);
-
-    assertEquals("renaming should change the name", newName, aMovie.getName());
+    assertEquals("renaming should change the name", newName, starWars.getName());
 
   }
 
@@ -53,24 +51,22 @@ public class TestMovie {
   public void testNullName() {
 
     String nullSring = null;
-    new Movie(nullSring);
+    new Movie(nullSring, "Uncategorized", -1);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testEmptyName() {
-    new Movie("");
+    new Movie("", "Uncategorized", -1);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullRenaming() {
-    Movie aMovie = new Movie("Star Wars");
-    aMovie.rename(null);
+    starWars.rename(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testEmptyRename() {
-    Movie movie = new Movie("Star Wars");
-    movie.rename("");
+    starWars.rename("");
   }
 
   @Test
