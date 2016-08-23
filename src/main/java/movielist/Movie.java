@@ -24,7 +24,16 @@ public class Movie {
 
   public Movie(String aName, String aCategory, int aRating){
     this(aName, aRating);
+    checkCategory(aCategory);
     this.category = (aCategory != null)? aCategory : "Uncategorized";
+  }
+
+  private void checkCategory(String aCategory) {
+    if(aCategory == null) return;
+    if(aCategory.equals("Uncategorized")) return ;
+    if(aCategory.equals("Science Fiction")) return;
+    if(aCategory.equals("Horror")) return ;
+    throw new IllegalArgumentException("Bad category :"+ aCategory);
   }
 
   private void checkNull(String title) {

@@ -4,9 +4,7 @@ import movielist.Movie;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.*;
 
 public class TestMovie {
 
@@ -86,6 +84,12 @@ public class TestMovie {
   public void testScienceFiction() {
     Movie alien = new Movie("Alien", "Science Fiction", 1);
     assertEquals("alien should be science fiction", "Science Fiction", alien.getCategory());
+  }
+
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testBadCategory() {
+    Movie alien = new Movie("Alien", "SciFi", -1);
   }
 
 }
