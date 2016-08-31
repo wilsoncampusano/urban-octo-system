@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Movie {
   private String name;
   private int rating;
-  private String category ="Uncategorized";
+  private Category category = Category.UNCATEGORIZED;
 
   public Movie(String title) {
     this(title, -1);
@@ -22,19 +22,11 @@ public class Movie {
     this.rating = rating;
   }
 
-  public Movie(String aName, String aCategory, int aRating){
+  public Movie(String aName, Category aCategory, int aRating){
     this(aName, aRating);
-    checkCategory(aCategory);
-    this.category = (aCategory != null)? aCategory : "Uncategorized";
+    this.category = (aCategory != null)? aCategory : Category.UNCATEGORIZED;
   }
 
-  private void checkCategory(String aCategory) {
-    if(aCategory == null) return;
-    if(aCategory.equals("Uncategorized")) return ;
-    if(aCategory.equals("Science Fiction")) return;
-    if(aCategory.equals("Horror")) return ;
-    throw new IllegalArgumentException("Bad category :"+ aCategory);
-  }
 
   private void checkNull(String title) {
     if (Objects.isNull(title)) throw new IllegalArgumentException("null movie name");
@@ -89,11 +81,11 @@ public class Movie {
     this.rating = rating;
   }
 
-  public String getCategory() {
+  public Category getCategory() {
     return category;
   }
 
-  public void setCategory(String category) {
+  public void setCategory(Category category) {
     this.category = category;
   }
 }

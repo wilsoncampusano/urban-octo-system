@@ -1,5 +1,6 @@
 package movielist.test;
 
+import movielist.Category;
 import movielist.Movie;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,7 @@ public class TestMovie {
 
   @Before
   public void setUp() {
-    this.starWars = new Movie("star Wars", "Uncategorized", -1);
+    this.starWars = new Movie("star Wars", Category.UNCATEGORIZED, -1);
   }
 
   @Test
@@ -27,10 +28,10 @@ public class TestMovie {
 
   @Test
   public void testEquals() {
-    final Movie a = new Movie("star wars", "Uncategorized", -1);
-    final Movie b = new Movie("star wars", "Uncategorized", -1);
-    final Movie c = new Movie("star trek", "Uncategorized", -1);
-    final Movie d = new Movie("star wars", "Uncategorized", -1);
+    final Movie a = new Movie("star wars", Category.UNCATEGORIZED, -1);
+    final Movie b = new Movie("star wars", Category.UNCATEGORIZED, -1);
+    final Movie c = new Movie("star trek", Category.UNCATEGORIZED, -1);
+    final Movie d = new Movie("star wars", Category.UNCATEGORIZED, -1);
     assertEquals(a, b);
     assertNotEquals(c, d);
 
@@ -49,12 +50,12 @@ public class TestMovie {
   public void testNullName() {
 
     String nullSring = null;
-    new Movie(nullSring, "Uncategorized", -1);
+    new Movie(nullSring,Category.UNCATEGORIZED, -1);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testEmptyName() {
-    new Movie("", "Uncategorized", -1);
+    new Movie("", Category.UNCATEGORIZED, -1);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -77,19 +78,14 @@ public class TestMovie {
 
   @Test
   public void testUncategorized() {
-    assertEquals("starWars shoul dbe uncategorized. ", "Uncategorized", starWars.getCategory());
+    assertEquals("starWars shoul dbe uncategorized. ", Category.UNCATEGORIZED, starWars.getCategory());
   }
 
   @Test
   public void testScienceFiction() {
-    Movie alien = new Movie("Alien", "Science Fiction", 1);
-    assertEquals("alien should be science fiction", "Science Fiction", alien.getCategory());
+    Movie alien = new Movie("Alien", Category.SCIFI, 1);
+    assertEquals("alien should be science fiction", Category.SCIFI, alien.getCategory());
   }
 
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testBadCategory() {
-    Movie alien = new Movie("Alien", "SciFi", -1);
-  }
 
 }
