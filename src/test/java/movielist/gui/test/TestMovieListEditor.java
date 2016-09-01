@@ -219,6 +219,7 @@ public class TestMovieListEditor {
     newMovies.add(starWars);
     newMovies.add(new Movie("Star Trek", 5));
     newMovies.add(stargate);
+    newMovies.add(theShining);
 
     mockView.setMovies(movies);
     control.setVoidCallable(1);
@@ -227,6 +228,8 @@ public class TestMovieListEditor {
     control.setVoidCallable(1);
     mockView.setRatingField(4);
     control.setVoidCallable();
+    mockView.setCategoryField(stargate.getCategory());
+    control.setVoidCallable(1);
 
     mockView.getNameField();
     control.setReturnValue("Star Trek", 1);
