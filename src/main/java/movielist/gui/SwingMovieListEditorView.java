@@ -1,5 +1,6 @@
 package movielist.gui;
 
+import movielist.Category;
 import movielist.MovieList;
 
 import javax.swing.*;
@@ -40,6 +41,9 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
 
   public int getRatingField() {
     return ratingField.getSelectedIndex();
+  }
+
+  public void setCategoryField(Category aCategory) {
   }
 
   public void setMovies(Vector movies) {

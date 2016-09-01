@@ -1,5 +1,7 @@
 package movielist.gui;
 
+import movielist.Category;
+
 import java.util.Vector;
 
 
@@ -17,4 +19,6 @@ public interface MovieListEditorView {
   void setRatingField(int newRating);
 
   int getRatingField();
+
+  void setCategoryField(Category aCategory);
 }

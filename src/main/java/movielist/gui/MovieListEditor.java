@@ -45,6 +45,7 @@ public class MovieListEditor {
       view.setNameField(selectedMovie.getName());
       try {
         view.setRatingField(selectedMovie.getRating()+1);
+        view.setCategoryField(selectedMovie.getCategory());
       } catch (UnratedException e) {
         view.setRatingField(0);
       }

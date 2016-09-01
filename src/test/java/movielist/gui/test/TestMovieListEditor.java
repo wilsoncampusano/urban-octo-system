@@ -1,5 +1,6 @@
 package movielist.gui.test;
 
+import movielist.Category;
 import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
@@ -21,18 +22,21 @@ public class TestMovieListEditor {
   private Movie starWars;
   private Movie starTrek;
   private Movie stargate;
+  private Movie theShining;
   private MovieList movieList;
 
   @Before
   public void setUp() {
-    starWars = new Movie("star wars",5);
-    starTrek = new Movie("Star Trek",3);
-    stargate = new Movie("stargate");
+    starWars = new Movie("star wars", Category.SCIFI, 5);
+    starTrek = new Movie("Star Trek", Category.SCIFI, 3);
+    stargate = new Movie("stargate", Category.SCIFI, 1);
+    theShining = new Movie("The Shining", Category.HORROR, 2);
 
     movies = new Vector();
     movies.add(starWars);
     movies.add(starTrek);
     movies.add(stargate);
+    movies.add(theShining);
 
     movieList = new MovieList();
 
@@ -52,6 +56,7 @@ public class TestMovieListEditor {
     movieList.add(starWars);
     movieList.add(starTrek);
     movieList.add(stargate);
+    movieList.add(theShining);
   }
 
   @Test
@@ -89,27 +94,41 @@ public class TestMovieListEditor {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
-    mockView.setNameField("Star Trek");
+    mockView.setNameField(starTrek.getName());
     control.setVoidCallable(1);
     mockView.setRatingField(6);
     control.setVoidCallable(1);
+    mockView.setCategoryField(Category.SCIFI);
+    control.setVoidCallable(1);
 
-    mockView.setNameField("star wars");
+    mockView.setNameField(starWars.getName());
     control.setVoidCallable(1);
     mockView.setRatingField(4);
     control.setVoidCallable(1);
-
-    mockView.setNameField("stargate");
+    mockView.setCategoryField(Category.SCIFI);
     control.setVoidCallable(1);
-    mockView.setRatingField(0);
+
+    mockView.setNameField(stargate.getName());
+    control.setVoidCallable(1);
+    mockView.setRatingField(2);
+    control.setVoidCallable(1);
+    mockView.setCategoryField(Category.SCIFI);
+    control.setVoidCallable(1);
+
+    mockView.setNameField(theShining.getName());
+    control.setVoidCallable(1);
+    mockView.setRatingField(3);
+    control.setVoidCallable(1);
+    mockView.setCategoryField(Category.HORROR);
     control.setVoidCallable(1);
 
     control.activate();
 
     MovieListEditor editor = new MovieListEditor(movieList, mockView);
-    editor.select(1);
     editor.select(0);
+    editor.select(1);
     editor.select(2);
+    editor.select(3);
 
     control.verify();
   }
