@@ -149,6 +149,8 @@ public class TestMovieListEditor {
     control.setReturnValue("Star Trek I", 1);
     mockView.getRatingField();
     control.setReturnValue(6,1);
+    mockView.setCategoryField(starTrek.getCategory());
+    control.setVoidCallable(1);
 
     mockView.setMovies(movies);
     control.setVoidCallable(2);
