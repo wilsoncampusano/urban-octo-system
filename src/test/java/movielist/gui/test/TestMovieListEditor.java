@@ -200,6 +200,8 @@ public class TestMovieListEditor {
 
     mockView.setRatingField(4);
     control.setVoidCallable();
+    mockView.setCategoryField(starWars.getCategory());
+    control.setVoidCallable(1);
 
     control.activate();
 
