@@ -12,4 +12,9 @@ public class Category {
   public static final Category HORROR = new Category("Horror");
   public static final Category SCIFI = new Category("Science Fiction");
 
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

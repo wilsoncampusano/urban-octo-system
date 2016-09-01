@@ -1,5 +1,6 @@
 package movielist.gui.test;
 
+import movielist.Category;
 import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
@@ -24,20 +25,23 @@ public class TestSwingMovieListEditorView {
   private Movie starWars;
   private Movie starTrek;
   private Movie stargate;
+  private Movie theShining;
   private MovieList movieList;
 
 
   @Before
   public void setUp() {
     SwingMovieListEditorView.start();
-    starWars = new Movie("star wars",5);
-    starTrek = new Movie("star trek",3);
-    stargate = new Movie("stargate");
+    starWars = new Movie("star wars",Category.SCIFI, 5);
+    starTrek = new Movie("star trek", Category.SCIFI, 3);
+    stargate = new Movie("stargate", Category.SCIFI, 1);
+    theShining = new Movie("The Shining", Category.HORROR, 1);
 
     movies = new Vector();
     movies.add(starWars);
     movies.add(starTrek);
     movies.add(stargate);
+    movies.add(theShining);
 
     movieList = new MovieList();
 
@@ -45,6 +49,7 @@ public class TestSwingMovieListEditorView {
       movieList.add(starWars);
       movieList.add(starTrek);
       movieList.add(stargate);
+      movieList.add(theShining);
     } catch (DuplicateMovieException e) {
       e.printStackTrace();
     }
@@ -205,6 +210,22 @@ public class TestSwingMovieListEditorView {
     movieList.clickOnItem(0,1);
     assertEquals("updating should have change the rating", 4, ratingCombo.getSelectedIndex());
 
+  }
+
+
+  @Test
+  public void testSelectUpdatesCategory() {
+    JListOperator movieList = new JListOperator(mainWindow);
+    JTextFieldOperator categoryField = new JTextFieldOperator(mainWindow, "category");
+
+    movieList.clickOnItem(0,1);
+    assertEquals("wrong category from selecting starwars", Category.SCIFI.toString(), categoryField.getText());
+
+    movieList.clickOnItem(3,1);
+    assertEquals("wrong category from selecting the shining ", Category.HORROR.toString(), categoryField.getText());
+
+    movieList.clickOnItem(1,1);
+    assertEquals("wrong category from selectiong startrek", Category.SCIFI.toString(), categoryField.getText());
   }
 
   private void checkDuplicateExceptionDialog() {

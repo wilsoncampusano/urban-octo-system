@@ -2,6 +2,7 @@ package movielist.gui;
 
 import movielist.Category;
 import movielist.MovieList;
+import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -18,6 +19,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   private MovieListEditor myEditor;
   private final JTextField movieField = new JTextField(16);
   private JComboBox ratingField = null;
+  private JTextField categoryField = null;
 
   public SwingMovieListEditorView() throws HeadlessException {
     super();
@@ -44,6 +46,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   }
 
   public void setCategoryField(Category aCategory) {
+    categoryField.setText(aCategory.toString());
   }
 
   public void setMovies(Vector movies) {
@@ -60,9 +63,16 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     initList();
     initField();
     initRatingCombo();
+    initCategoryField();
     initAddButton();
     initUpdateButton();
     pack();
+  }
+
+  private void initCategoryField() {
+    categoryField = new JTextField(14);
+    categoryField.setText("category");
+    getContentPane().add(categoryField);
   }
 
   private void initRatingCombo() {
