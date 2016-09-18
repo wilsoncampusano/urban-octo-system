@@ -48,6 +48,10 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     categoryField.setText(aCategory.toString());
   }
 
+  public Category getCategoryField() {
+    return null;
+  }
+
   public void setMovies(Vector movies) {
     movieList.setListData(movies);
   }

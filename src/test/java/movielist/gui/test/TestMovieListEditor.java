@@ -137,21 +137,23 @@ public class TestMovieListEditor {
   public void testUpdating() {
     Vector newMovies = new Vector();
     newMovies.add(starWars);
-    newMovies.add(new Movie("Star Trek I", 5));
+    newMovies.add(new Movie("Star Trek I",Category.COMEDY, 5));
     newMovies.add(stargate);
+    newMovies.add(theShining);
 
     mockView.setNameField("Star Trek");
     control.setVoidCallable();
     mockView.setRatingField(4);
+    control.setVoidCallable(1);
+    mockView.setCategoryField(Category.SCIFI);
     control.setVoidCallable(1);
 
     mockView.getNameField();
     control.setReturnValue("Star Trek I", 1);
     mockView.getRatingField();
     control.setReturnValue(6,1);
-    mockView.setCategoryField(starTrek.getCategory());
-    control.setVoidCallable(1);
-
+    mockView.getCategoryField();
+    control.setReturnValue(Category.COMEDY, 1);
     mockView.setMovies(movies);
     control.setVoidCallable(2);
 
