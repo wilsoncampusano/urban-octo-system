@@ -32,7 +32,7 @@ public class TestSwingMovieListEditorView {
     SwingMovieListEditorView.start();
     starWars = new Movie("star wars",Category.SCIFI, 5);
     starTrek = new Movie("star trek", Category.SCIFI, 3);
-    stargate = new Movie("stargate", Category.SCIFI, 1);
+    stargate = new Movie("stargate", Category.SCIFI, -1);
     theShining = new Movie("The Shining", Category.HORROR, 1);
 
     movies = new Vector();
