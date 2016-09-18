@@ -2,7 +2,6 @@ package movielist.gui;
 
 import movielist.Category;
 import movielist.MovieList;
-import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

@@ -5,7 +5,6 @@ import movielist.DuplicateMovieException;
 import movielist.Movie;
 import movielist.MovieList;
 import movielist.gui.MovieListEditor;
-import movielist.gui.MovieListEditorView;
 import movielist.gui.SwingMovieListEditorView;
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.netbeans.jemmy.operators.*;
 
 import javax.swing.*;
-import java.util.List;
 import java.util.Vector;
 
 import static org.junit.Assert.assertEquals;
