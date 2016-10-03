@@ -16,7 +16,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   public static final String WINDOW_TITLE = "Movie list";
   private JList movieList = null;
   private MovieListEditor myEditor;
-  private final JTextField movieField = new JTextField(30);
+  private final JTextField movieField = new JTextField(15);
   private JComboBox ratingField = null;
   private JComboBox categoryField = null;
 
@@ -89,13 +89,11 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   private void initCategoryField() {
     categoryField = new JComboBox(Category.categories());
     categoryField.setSelectedItem(Category.UNCATEGORIZED);
-   // getContentPane().add(categoryField);
     combosPanel.add(categoryField);
   }
 
   private void initRatingCombo() {
     ratingField = new JComboBox(CustomMovieListRenderer.ratingIcons);
-    //getContentPane().add(ratingField);
     combosPanel.add(ratingField);
   }
 
@@ -106,7 +104,6 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
         myEditor.update();
       }
     });
-    //getContentPane().add(updateButton);
     actionButtonPanel.add(updateButton);
   }
 
@@ -118,7 +115,6 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
       }
     });
     actionButtonPanel.add(addButton);
-    //getContentPane().add(addButton);
   }
 
   private void initField() {
