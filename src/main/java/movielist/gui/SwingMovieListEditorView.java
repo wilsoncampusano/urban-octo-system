@@ -16,9 +16,17 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   public static final String WINDOW_TITLE = "Movie list";
   private JList movieList = null;
   private MovieListEditor myEditor;
-  private final JTextField movieField = new JTextField(16);
+  private final JTextField movieField = new JTextField(30);
   private JComboBox ratingField = null;
   private JComboBox categoryField = null;
+
+  GridLayout actionButtons = new GridLayout(1,2);
+  Panel actionButtonPanel = new Panel(actionButtons);
+
+  GridLayout combos = new GridLayout(1,2);
+  Panel combosPanel = new Panel(combos);
+
+  GridLayout mainLayout =  new GridLayout(4, 1);
 
   public SwingMovieListEditorView() throws HeadlessException {
     super();
@@ -69,18 +77,26 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
     initCategoryField();
     initAddButton();
     initUpdateButton();
+    buildLayout();
     pack();
+  }
+
+  private void buildLayout() {
+    getContentPane().add(combosPanel);
+    getContentPane().add(actionButtonPanel);
   }
 
   private void initCategoryField() {
     categoryField = new JComboBox(Category.categories());
     categoryField.setSelectedItem(Category.UNCATEGORIZED);
-    getContentPane().add(categoryField);
+   // getContentPane().add(categoryField);
+    combosPanel.add(categoryField);
   }
 
   private void initRatingCombo() {
     ratingField = new JComboBox(CustomMovieListRenderer.ratingIcons);
-    getContentPane().add(ratingField);
+    //getContentPane().add(ratingField);
+    combosPanel.add(ratingField);
   }
 
   private void initUpdateButton() {
@@ -90,8 +106,8 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
         myEditor.update();
       }
     });
-
-    getContentPane().add(updateButton);
+    //getContentPane().add(updateButton);
+    actionButtonPanel.add(updateButton);
   }
 
   private void initAddButton() {
@@ -101,7 +117,8 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
         myEditor.add();
       }
     });
-    getContentPane().add(addButton);
+    actionButtonPanel.add(addButton);
+    //getContentPane().add(addButton);
   }
 
   private void initField() {
@@ -124,7 +141,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   }
 
   private void setLayout() {
-    getContentPane().setLayout(new FlowLayout());
+    getContentPane().setLayout(mainLayout);
   }
 
   private void setTitle() {
