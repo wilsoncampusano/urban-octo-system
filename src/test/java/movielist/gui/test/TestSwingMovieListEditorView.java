@@ -226,6 +226,22 @@ public class TestSwingMovieListEditorView {
     assertEquals("wrong category from selectiong startrek", Category.SCIFI.toString(), categoryField.getText());
   }
 
+  @Test
+  public void testUpdateCategory() {
+    JListOperator moviList = new JListOperator(mainWindow);
+    JComboBoxOperator categoryCombo = new JComboBoxOperator(mainWindow, Category.UNCATEGORIZED.toString());
+
+    moviList.clickOnItem(0,1);
+    categoryCombo.setSelectedIndex(2);
+
+    JButtonOperator updateButton = new JButtonOperator(mainWindow, "Update");
+    updateButton.pushNoBlock();
+    moviList.clickOnItem(1,1);
+    moviList.clickOnItem(0,1);
+
+    assertEquals("update should have changed category", Category.HORROR, categoryCombo.getSelectedItem());
+  }
+
   private void checkDuplicateExceptionDialog() {
     JDialogOperator messageDialog = new JDialogOperator("duplicate movie");
     JLabelOperator message = new JLabelOperator(messageDialog);
@@ -238,7 +254,7 @@ public class TestSwingMovieListEditorView {
 
   private void esperarInterfaz() {
     try {
-      Thread.sleep(9000);
+      Thread.sleep(900);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }

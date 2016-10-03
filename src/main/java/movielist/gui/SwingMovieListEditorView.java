@@ -18,7 +18,7 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   private MovieListEditor myEditor;
   private final JTextField movieField = new JTextField(16);
   private JComboBox ratingField = null;
-  private JTextField categoryField = null;
+  private JComboBox categoryField = null;
 
   public SwingMovieListEditorView() throws HeadlessException {
     super();
@@ -45,11 +45,11 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   }
 
   public void setCategoryField(Category aCategory) {
-    categoryField.setText(aCategory.toString());
+    categoryField.setSelectedItem(aCategory);
   }
 
   public Category getCategoryField() {
-    return null;
+    return (Category)categoryField.getSelectedItem();
   }
 
   public void setMovies(Vector movies) {
@@ -73,8 +73,8 @@ public class SwingMovieListEditorView extends JFrame implements MovieListEditorV
   }
 
   private void initCategoryField() {
-    categoryField = new JTextField(14);
-    categoryField.setText("category");
+    categoryField = new JComboBox(Category.categories());
+    categoryField.setSelectedItem(Category.UNCATEGORIZED);
     getContentPane().add(categoryField);
   }
 
