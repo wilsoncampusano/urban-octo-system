@@ -214,16 +214,16 @@ public class TestSwingMovieListEditorView {
   @Test
   public void testSelectUpdatesCategory() {
     JListOperator movieList = new JListOperator(mainWindow);
-    JTextFieldOperator categoryField = new JTextFieldOperator(mainWindow, "category");
+    JComboBoxOperator categoryField = new JComboBoxOperator(mainWindow, Category.UNCATEGORIZED.toString());
 
     movieList.clickOnItem(0,1);
-    assertEquals("wrong category from selecting starwars", Category.SCIFI.toString(), categoryField.getText());
+    assertEquals("wrong category from selecting starwars", Category.SCIFI, categoryField.getSelectedItem());
 
     movieList.clickOnItem(3,1);
-    assertEquals("wrong category from selecting the shining ", Category.HORROR.toString(), categoryField.getText());
+    assertEquals("wrong category from selecting the shining ", Category.HORROR, categoryField.getSelectedItem());
 
     movieList.clickOnItem(1,1);
-    assertEquals("wrong category from selectiong startrek", Category.SCIFI.toString(), categoryField.getText());
+    assertEquals("wrong category from selectiong startrek", Category.SCIFI, categoryField.getSelectedItem());
   }
 
   @Test
