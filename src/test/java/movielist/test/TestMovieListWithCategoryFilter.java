@@ -22,6 +22,9 @@ public class TestMovieListWithCategoryFilter {
   private Movie princessBride;
   private MovieList movieList ;
   private MovieList fantasyList ;
+  private MovieList scifiList;
+  private MovieList horrorList;
+  private MovieList thrillerList;
 
   @Before
   public void setUp() throws Exception {
@@ -51,12 +54,27 @@ public class TestMovieListWithCategoryFilter {
     fantasyList.add(fotr);
     fantasyList.add(princessBride);
 
+    scifiList = new MovieList();
+    scifiList.add(starTrek);
+    scifiList.add(starWars);
+    scifiList.add(stargate);
+
+    horrorList = new MovieList();
+    horrorList.add(theShining);
+    horrorList.add(carrie);
+
+    thrillerList = new MovieList();
+    thrillerList.add(redObtober);
+    thrillerList.add(congo);
 
   }
 
   @Test
   public void testSubsets() {
-    assertEquals("wrong FANTASY sublist", fantasyList, movieList.categorySublist(Category.FANTASY));;
+    assertEquals("wrong FANTASY sublist", fantasyList, movieList.categorySublist(Category.FANTASY));
+    assertEquals("wrong SCIFI sublist", scifiList, movieList.categorySublist(Category.SCIFI));
+    assertEquals("wrong HORROR sublist", horrorList, movieList.categorySublist(Category.HORROR));
+    assertEquals("wrong THRILLER sublist", thrillerList, movieList.categorySublist(Category.THRILLER));
   }
 
 }
