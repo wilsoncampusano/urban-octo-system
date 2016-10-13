@@ -1,9 +1,6 @@
 package movielist.gui;
 
-import movielist.DuplicateMovieException;
-import movielist.Movie;
-import movielist.MovieList;
-import movielist.UnratedException;
+import movielist.*;
 
 import java.util.Vector;
 
@@ -11,9 +8,11 @@ public class MovieListEditor {
   private MovieList movies;
   private MovieListEditorView view;
   private Movie selectedMovie;
+  private MovieList filteredMovies;
 
   public MovieListEditor(MovieList movieList, MovieListEditorView aView) {
     this.movies = movieList;
+    this.filteredMovies = movieList;
     this.view = aView;
     updateMovieList();
     this.view.setEditor(this);
@@ -34,7 +33,7 @@ public class MovieListEditor {
   }
 
   private void updateMovieList() {
-    view.setMovies(new Vector(movies.getMovies()));
+    view.setMovies(new Vector(filteredMovies.getMovies()));
   }
 
   public void select(int i) {
@@ -73,6 +72,11 @@ public class MovieListEditor {
   private void updateMovie() {
     selectedMovie.setRating(view.getRatingField() - 1);
     selectedMovie.setCategory(view.getCategoryField());
+    updateMovieList();
+  }
+
+  public void filterOnCategory(Category category) {
+    filteredMovies = movies.categorySublist(category);
     updateMovieList();
   }
 }
