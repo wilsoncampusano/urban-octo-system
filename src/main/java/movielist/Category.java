@@ -17,6 +17,9 @@ public class Category {
   public static final Category SCIFI = new Category("Science Fiction");
   public static final Category HORROR = new Category("Horror");
   public static final Category COMEDY = new Category("Comedy");
+  public static final Category FANTASY = new Category("Fantasy");
+  public static final Category THRILLER = new Category("Thriller");
+
   @Override
   public String toString() {
     return name;

@@ -88,4 +88,8 @@ public class Movie {
   public void setCategory(Category category) {
     this.category = category;
   }
+
+  public boolean isOfCategory(Category aCategory) {
+    return this.category.equals(aCategory);
+  }
 }

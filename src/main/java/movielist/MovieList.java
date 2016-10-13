@@ -37,4 +37,40 @@ public class MovieList {
 
     aMovie.rename(newName);
   }
+
+  public MovieList categorySublist(Category aCategory) {
+    MovieList filteredList = new MovieList();
+    for (Object m : movies) {
+      if (((Movie)m).isOfCategory(aCategory)) {
+        try {
+          filteredList.add((Movie) m);
+        } catch (DuplicateMovieException e) {
+        }
+      }
+    }
+    return filteredList;
+  }
+
+  @Override
+  public String toString() {
+    return "MovieList{" +
+        "movies=" + movies +
+        '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    MovieList movieList = (MovieList) o;
+
+    return movies != null ? movies.equals(movieList.movies) : movieList.movies == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    return movies != null ? movies.hashCode() : 0;
+  }
 }

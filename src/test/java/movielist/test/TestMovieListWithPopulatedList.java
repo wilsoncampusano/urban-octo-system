@@ -98,4 +98,15 @@ public class TestMovieListWithPopulatedList {
     }
   }
 
+  @Test
+  public void testEqualsMovieList() throws DuplicateMovieException {
+    MovieList anotherMovieList = new MovieList();
+    anotherMovieList.add(starWars);
+    anotherMovieList.add(starTrek);
+    anotherMovieList.add(stargate);
+    anotherMovieList.add(fotr);
+
+    assertEquals("list are not equals", movieList, anotherMovieList);
+  }
+
 }
