@@ -77,4 +77,11 @@ public class TestMovieListWithCategoryFilter {
     assertEquals("wrong THRILLER sublist", thrillerList, movieList.categorySublist(Category.THRILLER));
   }
 
+  @Test
+  public void testAllSubset() {
+    assertEquals("all subset should return the ful list",
+        movieList, movieList.categorySublist(Category.ALL));
+
+  }
+
 }

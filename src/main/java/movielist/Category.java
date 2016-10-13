@@ -5,7 +5,6 @@ import java.util.Vector;
 public class Category {
 
   private String name;
-
   private Category(String aName){
     this.name = aName;
     allCategories.add(this);
@@ -19,6 +18,7 @@ public class Category {
   public static final Category COMEDY = new Category("Comedy");
   public static final Category FANTASY = new Category("Fantasy");
   public static final Category THRILLER = new Category("Thriller");
+  public static final Category ALL = new Category("ALL");
 
   @Override
   public String toString() {

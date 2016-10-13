@@ -39,6 +39,9 @@ public class MovieList {
   }
 
   public MovieList categorySublist(Category aCategory) {
+    if(aCategory.equals(Category.ALL))
+      return this;
+
     MovieList filteredList = new MovieList();
     for (Object m : movies) {
       if (((Movie)m).isOfCategory(aCategory)) {
