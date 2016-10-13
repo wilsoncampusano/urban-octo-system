@@ -55,8 +55,8 @@ public class TestMovieListWithCategoryFilter {
     fantasyList.add(princessBride);
 
     scifiList = new MovieList();
-    scifiList.add(starTrek);
     scifiList.add(starWars);
+    scifiList.add(starTrek);
     scifiList.add(stargate);
 
     horrorList = new MovieList();
