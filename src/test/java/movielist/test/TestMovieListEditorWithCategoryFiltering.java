@@ -3,6 +3,7 @@ package movielist.test;
 import movielist.Category;
 import movielist.Movie;
 import movielist.MovieList;
+import movielist.UnratedException;
 import movielist.gui.MovieListEditor;
 import movielist.gui.MovieListEditorView;
 import org.easymock.EasyMock;
@@ -112,6 +113,30 @@ public class TestMovieListEditorWithCategoryFiltering {
     editor.filterOnCategory(Category.ALL);
 
     control.verify();
+  }
+
+  @Test
+  public void testSelecting() throws UnratedException {
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+    mockView.setMovies(fantasyMovies);
+    control.setVoidCallable(1);
+
+    mockView.setNameField(fotr.getName());
+    control.setVoidCallable(1);
+    mockView.setRatingField(fotr.getRating());
+    control.setVoidCallable(1);
+    mockView.setCategoryField(fotr.getCategory());
+    control.setVoidCallable(1);
+
+    control.activate();
+
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.filterOnCategory(Category.FANTASY);
+    editor.select(0);
+
+    control.verify();
+
   }
 
 }
