@@ -14,6 +14,7 @@ import org.junit.Test;
 import java.util.Vector;
 
 import static movielist.Category.*;
+import static org.junit.Assert.assertEquals;
 
 public class TestMovieListEditorWithCategoryFiltering {
 
@@ -137,6 +138,67 @@ public class TestMovieListEditorWithCategoryFiltering {
 
     control.verify();
 
+  }
+
+  @Test
+  public void testUpdating() throws UnratedException {
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+    mockView.setMovies(fantasyMovies);
+    control.setVoidCallable(2);
+
+    mockView.setNameField(princessBride.getName());
+    control.setVoidCallable(1);
+    mockView.setRatingField(6);
+    control.setVoidCallable(1);
+    mockView.setCategoryField(Category.FANTASY);
+    control.setVoidCallable(1);
+
+    mockView.getNameField();
+    control.setReturnValue(princessBride.getName(), 1);
+    mockView.getRatingField();
+    control.setReturnValue(2, 1);
+    mockView.getCategoryField();
+    control.setReturnValue(Category.FANTASY, 1);
+
+    control.activate();
+
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.filterOnCategory(Category.FANTASY);
+    editor.select(1);
+    editor.update();
+
+    control.verify();
+
+    assertEquals("princess should have been changed to rating of 1", 1, princessBride.getRating());
+  }
+
+  @Test
+  public void testDuplicateCausingUpdate() {
+    mockView.setMovies(movies);
+    control.setVoidCallable(1);
+    mockView.setMovies(fantasyMovies);
+    control.setVoidCallable(1);
+
+    mockView.setNameField(princessBride.getName());
+    control.setVoidCallable(1);
+    mockView.setRatingField(6);
+    control.setVoidCallable(1);
+    mockView.setCategoryField(Category.FANTASY);
+    control.setVoidCallable(1);
+
+    mockView.getNameField();
+    control.setReturnValue(starWars.getName(), 1);
+    mockView.duplicateException("Star Wars");
+    control.setVoidCallable(1);
+    control.activate();
+
+    MovieListEditor editor = new MovieListEditor(movieList, mockView);
+    editor.filterOnCategory(Category.FANTASY);
+    editor.select(1);
+    editor.update();
+
+    control.verify();
   }
 
 }
