@@ -95,7 +95,7 @@ public class TestMovieListEditorWithCategoryFiltering {
   }
 
   @Test
-  public void testCategory() {
+  public void testCategoryFiltering() {
     mockView.setMovies(movies);
     control.setVoidCallable(1);
 
