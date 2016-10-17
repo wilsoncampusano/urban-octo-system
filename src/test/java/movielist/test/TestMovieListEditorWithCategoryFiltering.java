@@ -124,7 +124,7 @@ public class TestMovieListEditorWithCategoryFiltering {
 
     mockView.setNameField(fotr.getName());
     control.setVoidCallable(1);
-    mockView.setRatingField(fotr.getRating());
+    mockView.setRatingField(6);
     control.setVoidCallable(1);
     mockView.setCategoryField(fotr.getCategory());
     control.setVoidCallable(1);

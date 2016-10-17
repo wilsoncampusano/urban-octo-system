@@ -40,7 +40,7 @@ public class MovieListEditor {
     if (i == -1){
       selectedMovie = null;
     }else {
-      selectedMovie = movies.getMovies(i);
+      selectedMovie = filteredMovies.getMovies(i);
       view.setNameField(selectedMovie.getName());
       try {
         view.setRatingField(selectedMovie.getRating()+1);
